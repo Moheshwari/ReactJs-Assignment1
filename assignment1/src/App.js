@@ -1,25 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import MyComponent from './MyComponent'
+import React from 'react'
 
+import {useState} from 'react'
 function App() {
+  const [clicked, setClicked] = useState('');
+  const [myInfo,setMyInfo] = useState('');
+
+  const navigationClicked = (clickedName) => {
+    setClicked(clickedName);
+    
+    //setMyInfo(clickedName === 'home' ? 'Mony' : 'Dhaka');
+
+  };
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Welcome to our website!</h1>
+      <button onClick={ () =>navigationClicked('home')}> Home</button>
+      <button onClick={() =>navigationClicked('contact')}> Contact</button>
+      {clicked === 'home' && <MyComponent name="Mony" componentname={'Home'}/>}
+      {clicked === 'contact' && <MyComponent Contact="Dhaka" componentname={'Contact'}/>}
+    </>
   );
 }
 
 export default App;
+
+
